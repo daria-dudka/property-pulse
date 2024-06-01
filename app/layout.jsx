@@ -1,7 +1,9 @@
+import Navbar from '@/components/Navbar';
 import '@/assets/styles/globals.css';
+import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'PtopertyPulse | Find The Perfect Rental',
+  title: 'PropertyPulse | Find The Perfect Rental',
   description: 'Find your dream rental property',
   keywords: 'rental, find rentals, find properties',
 };
@@ -10,7 +12,9 @@ const MainLayout = ({ children }) => {
   return (
     <html lang='en'>
       <body>
-        <div>{children}</div>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
