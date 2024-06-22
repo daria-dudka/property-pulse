@@ -1,6 +1,6 @@
 # Property Pulse App
 
-Property Pulse is a Full Stack Responsive Next.js 14 App, that allows the users to search, bookmark and manage property listings. (Tech Stack: Next.js 14, React, Tailwind CSS, Mongo DB, Next Auth, Cloudinary, Mapbox etc.)
+Property Pulse is a Full Stack Responsive Next.js 14 App, that allows the users to search, bookmark and manage property listings. (Tech Stack: Next.js 14, React, Tailwind CSS, Mongo DB, Next Auth, Cloudinary, Mapbox, Photoswipe etc.)
 
 You can find the deployed application by going to this link ...
 
