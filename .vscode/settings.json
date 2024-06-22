@@ -1,3 +1,12 @@
 {
-  "cSpell.words": ["googleusercontent", "signin", "zipcode"]
+  "cSpell.words": [
+    "cloudinary",
+    "googleusercontent",
+    "NEXTAUTH",
+    "photoswipe",
+    "propertypulse",
+    "signin",
+    "toastify",
+    "zipcode"
+  ]
 }

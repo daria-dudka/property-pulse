@@ -1,4 +1,4 @@
-import { rateLabels } from '@/utils/constants';
+import { RATE_LABELS } from '@/utils/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -13,10 +13,10 @@ const PropertyCard = ({ property }) => {
   const getRateDisplay = (rates) => {
     if (!rates) return '';
 
-    for (const rateType of Object.keys(rateLabels)) {
+    for (const rateType of Object.keys(RATE_LABELS)) {
       if (rates[rateType]) {
         return `$${rates[rateType].toLocaleString()}/${
-          rateLabels[rateType].short
+          RATE_LABELS[rateType].short
         }`;
       }
     }
@@ -27,8 +27,8 @@ const PropertyCard = ({ property }) => {
   return (
     <div className='rounded-xl shadow-md relative flex flex-col h-full'>
       <Image
-        src={`/images/properties/${property?.images[0]}`}
-        alt={property?.images[0]}
+        src={property?.images[0]}
+        alt={property?.name}
         height={0}
         width={0}
         sizes='100vw'
@@ -64,7 +64,7 @@ const PropertyCard = ({ property }) => {
           {Object.keys(property?.rates).map((rate) => (
             <p key={rate}>
               <FaMoneyBill className='inline mr-2' />{' '}
-              {rateLabels[rate].long}
+              {RATE_LABELS[rate].long}
             </p>
           ))}
         </div>

@@ -6,7 +6,7 @@ import {
   FaTimes,
   FaCheck,
 } from 'react-icons/fa';
-import { rateLabels } from '@/utils/constants';
+import { RATE_LABELS } from '@/utils/constants';
 
 const PropertyDetails = ({ property }) => {
   return (
@@ -25,13 +25,13 @@ const PropertyDetails = ({ property }) => {
           Rates & Options
         </h3>
         <div className='flex flex-col md:flex-row justify-around'>
-          {Object.keys(rateLabels).map((rateType) => (
+          {Object.keys(RATE_LABELS).map((rateType) => (
             <div
               key={rateType}
               className='flex items-center justify-center mb-4 border-b border-gray-200 md:border-b-0 pb-4 md:pb-0'
             >
               <div className='text-gray-500 mr-2 font-bold'>
-                {rateLabels[rateType].long}
+                {RATE_LABELS[rateType].long}
               </div>
               <div className='text-2xl font-bold'>
                 {property.rates[rateType] ? (
