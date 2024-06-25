@@ -4,6 +4,8 @@ Property Pulse is a Full Stack Responsive Next.js 14 App, that allows the users 
 
 You can find the deployed application by going to this link https://property-pulse-lilac.vercel.app/
 
+<img width="700" alt="Screenshot 2024-06-25 at 1 47 34 PM" src="https://github.com/daria-dudka/property-pulse/assets/66278954/ec1f5f4a-e99d-47c3-8055-3720d8533791">
+
 ## Features
 
 Here are some of the current features that Property Pulse has:
