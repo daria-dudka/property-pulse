@@ -7,6 +7,7 @@
     "NEXTAUTH",
     "photoswipe",
     "propertypulse",
+    "Serializeable",
     "signin",
     "sqft",
     "toastify",

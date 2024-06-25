@@ -1,3 +1,4 @@
+'use client';
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -9,9 +10,8 @@ import {
   EmailIcon,
 } from 'react-share';
 
-const ShareButton = ({ property }) => {
-  const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/properties/${property._id}`;
-  const hashtag = `${property.type.replace(/\s/g, '')}ForRent`;
+const ShareButtons = ({ property, PUBLIC_DOMAIN }) => {
+  const shareUrl = `${PUBLIC_DOMAIN}/properties/${property._id}`;
 
   return (
     <>
@@ -22,7 +22,7 @@ const ShareButton = ({ property }) => {
         <FacebookShareButton
           url={shareUrl}
           quote={property.name}
-          hashtag={hashtag}
+          hashtag={`#${property.type.replace(/\s/g, '')}ForRent`}
         >
           <FacebookIcon size={40} round={true} />
         </FacebookShareButton>
@@ -30,7 +30,7 @@ const ShareButton = ({ property }) => {
         <TwitterShareButton
           url={shareUrl}
           title={property.name}
-          hashtags={[hashtag]}
+          hashtags={[`${property.type.replace(/\s/g, '')}ForRent`]}
         >
           <TwitterIcon size={40} round={true} />
         </TwitterShareButton>
@@ -54,4 +54,4 @@ const ShareButton = ({ property }) => {
     </>
   );
 };
-export default ShareButton;
+export default ShareButtons;

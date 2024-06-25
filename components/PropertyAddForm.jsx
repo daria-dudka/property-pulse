@@ -1,5 +1,5 @@
 'use client';
-
+import addProperty from '@/app/actions/addProperty';
 import { toast } from 'react-toastify';
 import {
   AMENITIES,
@@ -8,6 +8,7 @@ import {
   RATE_LABELS,
   SELLER_FIELDS,
 } from '@/utils/constants';
+import SubmitButton from './SubmitButton';
 
 const PropertyAddForm = () => {
   const handleImageChange = (e) => {
@@ -18,11 +19,7 @@ const PropertyAddForm = () => {
   };
 
   return (
-    <form
-      action='/api/properties'
-      method='POST'
-      encType='multipart/form-data'
-    >
+    <form action={addProperty}>
       <h2 className='text-3xl text-center font-semibold mb-6'>
         Add Property
       </h2>
@@ -232,12 +229,7 @@ const PropertyAddForm = () => {
       </div>
 
       <div>
-        <button
-          className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline'
-          type='submit'
-        >
-          Add Property
-        </button>
+        <SubmitButton />
       </div>
     </form>
   );

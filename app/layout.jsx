@@ -15,19 +15,18 @@ export const metadata = {
 
 const MainLayout = ({ children }) => {
   return (
-    <GlobalProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <GlobalProvider>
         <html lang='en'>
-          <body className='flex flex-col min-h-screen h-full'>
+          <body>
             <Navbar />
             <main>{children}</main>
             <Footer />
             <ToastContainer />
           </body>
         </html>
-      </AuthProvider>
-    </GlobalProvider>
+      </GlobalProvider>
+    </AuthProvider>
   );
 };
-
 export default MainLayout;

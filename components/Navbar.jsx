@@ -1,6 +1,5 @@
 'use client';
-
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -30,6 +29,7 @@ const Navbar = () => {
       const res = await getProviders();
       setProviders(res);
     };
+
     setAuthProviders();
 
     window.addEventListener('resize', () => {
@@ -130,7 +130,7 @@ const Navbar = () => {
                       key={index}
                       className='flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
                     >
-                      <FaGoogle className='text-white mr-2'></FaGoogle>
+                      <FaGoogle className='text-white mr-2' />
                       <span>Login or Register</span>
                     </button>
                   ))}
@@ -163,7 +163,7 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
-                <UnreadMessageCount session={session} />
+                <UnreadMessageCount />
               </Link>
               {/* <!-- Profile dropdown button --> */}
               <div className='relative ml-3'>
@@ -182,10 +182,10 @@ const Navbar = () => {
                     <span className='sr-only'>Open user menu</span>
                     <Image
                       className='h-8 w-8 rounded-full'
-                      src={profileImage ?? profileDefault}
-                      alt='Profile Image'
-                      height={40}
+                      src={profileImage || profileDefault}
+                      alt=''
                       width={40}
+                      height={40}
                     />
                   </button>
                 </div>
@@ -206,7 +206,9 @@ const Navbar = () => {
                       role='menuitem'
                       tabIndex='-1'
                       id='user-menu-item-0'
-                      onClick={() => setIsProfileMenuOpen(false)}
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
+                      }}
                     >
                       Your Profile
                     </Link>
@@ -216,7 +218,9 @@ const Navbar = () => {
                       role='menuitem'
                       tabIndex='-1'
                       id='user-menu-item-2'
-                      onClick={() => setIsProfileMenuOpen(false)}
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);
+                      }}
                     >
                       Saved Properties
                     </Link>
@@ -270,15 +274,15 @@ const Navbar = () => {
                 Add Property
               </Link>
             )}
+
             {!session &&
               providers &&
               Object.values(providers).map((provider, index) => (
                 <button
                   onClick={() => signIn(provider.id)}
                   key={index}
-                  className='flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4'
+                  className='flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
                 >
-                  <FaGoogle className='text-white mr-2'></FaGoogle>
                   <span>Login or Register</span>
                 </button>
               ))}
@@ -288,5 +292,4 @@ const Navbar = () => {
     </nav>
   );
 };
-
 export default Navbar;
