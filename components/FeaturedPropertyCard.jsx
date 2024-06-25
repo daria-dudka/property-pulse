@@ -10,27 +10,24 @@ import {
 } from 'react-icons/fa';
 import { getRateDisplay } from '@/utils/helpers';
 
-const PropertyCard = ({ property }) => {
+const FeaturedPropertyCard = ({ property }) => {
   return (
-    <div className='rounded-xl shadow-md relative flex flex-col h-full'>
+    <div className='bg-white rounded-xl shadow-md relative flex flex-col md:flex-row'>
       <Image
         src={property?.images[0]}
         alt={property?.name}
         height={0}
         width={0}
         sizes='100vw'
-        className='w-full h-auto rounded-t-xl'
+        className='object-cover rounded-t-xl md:rounded-tr-none md:rounded-l-xl w-full md:w-2/5'
         priority={true}
       />
-      <div className='p-4 flex-grow flex flex-col justify-between'>
-        <div className='text-left md:text-center lg:text-left mb-6'>
-          <div className='text-gray-600'>{property?.type}</div>
-          <h3 className='text-xl font-bold'>{property?.name}</h3>
-        </div>
-        <h3 className='absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 font-bold text-right md:text-center lg:text-right'>
+      <div className='p-6'>
+        <h3 className='text-xl font-bold'>{property?.name}</h3>
+        <div className='text-gray-600 mb-4'>{property?.type}</div>
+        <h3 className='absolute top-[10px] left-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 font-bold text-right md:text-center lg:text-right'>
           {getRateDisplay(property?.rates)}
         </h3>
-
         <div className='flex justify-center gap-4 text-gray-500 mb-4'>
           <p>
             <FaBed className='inline mr-2' /> {`${property.beds} `}
@@ -56,9 +53,9 @@ const PropertyCard = ({ property }) => {
           ))}
         </div>
 
-        <div className='border border-gray-100 mb-5'></div>
+        <div className='border border-gray-200 mb-5'></div>
 
-        <div className='flex flex-row md:flex-col lg:flex-row justify-between items-center'>
+        <div className='flex flex-col lg:flex-row justify-between'>
           <div className='flex align-middle gap-2 mb-4 lg:mb-0'>
             <FaMapMarker className='inline mr-2 text-orange-700 mt-1' />
             <span className='text-orange-700'>
@@ -76,5 +73,4 @@ const PropertyCard = ({ property }) => {
     </div>
   );
 };
-
-export default PropertyCard;
+export default FeaturedPropertyCard;
