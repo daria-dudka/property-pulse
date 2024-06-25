@@ -36,7 +36,7 @@ export const GET = async (request) => {
 
     const messages = [...unreadMessages, ...readMessages];
 
-    return new Response(JSON.stringify(messages), { status: 200 });
+    return Response.json(messages);
   } catch (error) {
     console.log(error);
     return new Response('Something went wrong', { status: 500 });
@@ -55,23 +55,17 @@ export const POST = async (request) => {
     const sessionUser = await getSessionUser();
 
     if (!sessionUser || !sessionUser.userId) {
-      return new Response(
-        JSON.stringify({
-          message: 'You must be logged in to send a message',
-        }),
-        { status: 401 }
-      );
+      return Response.json({
+        message: 'You must be logged in to send a message',
+      });
     }
 
     const { userId } = sessionUser;
 
     if (userId === recipient) {
-      return new Response(
-        JSON.stringify({
-          message: 'Can not send a message to yourself',
-        }),
-        { status: 400 }
-      );
+      return Response.json({
+        message: 'Can not send a message to yourself',
+      });
     }
 
     const newMessage = new Message({
@@ -86,9 +80,7 @@ export const POST = async (request) => {
 
     await newMessage.save();
 
-    return new Response(JSON.stringify({ message: 'Message Sent' }), {
-      status: 200,
-    });
+    return Response.json({ message: 'Message Sent' });
   } catch (error) {
     console.log(error);
     return new Response('Something went wrong', { status: 500 });

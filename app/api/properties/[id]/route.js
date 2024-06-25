@@ -13,9 +13,7 @@ export const GET = async (request, { params }) => {
     if (!property)
       return new Response('Property Not Found', { status: 404 });
 
-    return new Response(JSON.stringify(property), {
-      status: 200,
-    });
+    return Response.json(property);
   } catch (error) {
     console.log(error);
     return new Response('Something went wrong', { status: 500 });
@@ -61,9 +59,7 @@ export const DELETE = async (request, { params }) => {
 
     await property.deleteOne();
 
-    return new Response('Property Deleted', {
-      status: 200,
-    });
+    return Response.json({ message: 'Property Deleted' });
   } catch (error) {
     console.log(error);
     return new Response('Something went wrong', { status: 500 });
@@ -131,9 +127,7 @@ export const PUT = async (request, { params }) => {
       propertyData
     );
 
-    return new Response(JSON.stringify(updatedProperty), {
-      status: '200',
-    });
+    return Response.json(updatedProperty);
   } catch (error) {
     return new Response('Failed to update property', {
       status: '500',

@@ -25,9 +25,7 @@ export const GET = async (request) => {
       properties,
     };
 
-    return new Response(JSON.stringify(result), {
-      status: 200,
-    });
+    return Response.json(result);
   } catch (error) {
     console.log(error);
     return new Response('Something went wrong', { status: 500 });
@@ -83,10 +81,10 @@ export const POST = async (request) => {
       owner: userId,
     };
 
-    const imageUploadPromises = [];
+    const imageUrls = [];
 
-    for (const image of images) {
-      const imageBuffer = await image.arrayBuffer();
+    for (const imageFile of images) {
+      const imageBuffer = await imageFile.arrayBuffer();
       const imageArray = Array.from(new Uint8Array(imageBuffer));
       const imageData = Buffer.from(imageArray);
 
@@ -99,11 +97,10 @@ export const POST = async (request) => {
         }
       );
 
-      imageUploadPromises.push(result.secure_url);
-
-      const uploadedImages = await Promise.all(imageUploadPromises);
-      propertyData.images = uploadedImages;
+      imageUrls.push(result.secure_url);
     }
+
+    propertyData.images = imageUrls;
 
     const newProperty = new Property(propertyData);
     await newProperty.save();
@@ -111,10 +108,6 @@ export const POST = async (request) => {
     return Response.redirect(
       `${process.env.NEXTAUTH_URL}/properties/${newProperty._id}`
     );
-
-    // return new Response(
-    //   JSON.stringify({ message: 'Success', data: newProperty }),
-    //   { status: '200' });
   } catch (error) {
     return new Response('Failed to add property', { status: '500' });
   }

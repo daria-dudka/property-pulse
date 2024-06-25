@@ -8,91 +8,13 @@ import {
   RATE_LABELS,
   SELLER_FIELDS,
 } from '@/utils/constants';
-import { useState } from 'react';
 
 const PropertyAddForm = () => {
-  const [fields, setFields] = useState({
-    type: '',
-    name: '',
-    description: '',
-    location: {
-      street: '',
-      city: '',
-      state: '',
-      zipcode: '',
-    },
-    beds: '',
-    baths: '',
-    square_feet: '',
-    amenities: [],
-    rates: {
-      weekly: '',
-      monthly: '',
-      nightly: '',
-    },
-    seller_info: {
-      name: '',
-      email: '',
-      phone: '',
-    },
-    images: [],
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name.includes('.')) {
-      const [outerKey, innerKey] = name.split('.');
-      setFields((prevFields) => ({
-        ...prevFields,
-        [outerKey]: {
-          ...prevFields[outerKey],
-          [innerKey]: value,
-        },
-      }));
-    } else {
-      setFields((prevFields) => ({
-        ...prevFields,
-        [name]: value,
-      }));
-    }
-  };
-
-  const handleAmenitiesChange = (e) => {
-    const { value, checked } = e.target;
-
-    const updatedAmenities = [...fields.amenities];
-
-    if (checked) {
-      updatedAmenities.push(value);
-    } else {
-      const index = updatedAmenities.indexOf(value);
-
-      if (index !== -1) {
-        updatedAmenities.splice(index, 1);
-      }
-    }
-
-    setFields((prevFields) => ({
-      ...prevFields,
-      amenities: updatedAmenities,
-    }));
-  };
   const handleImageChange = (e) => {
-    const { files } = e.target;
-    // if (files.length > 4) {
-    //   e.target.value = '';
-    //   toast.error('You can select up to 4 images in total.');
-    // }
-    const updatedImages = [...fields.images];
-    for (const file of files) {
-      updatedImages.push(file);
+    if (e.target.files.length > 4) {
+      e.target.value = '';
+      toast.error('You can select up to 4 images in total.');
     }
-
-    setFields((prevFields) => ({
-      ...prevFields,
-      images: updatedImages,
-    }));
   };
 
   return (
@@ -117,8 +39,6 @@ const PropertyAddForm = () => {
           name='type'
           className='border rounded w-full py-2 px-3'
           required
-          value={fields.type}
-          onChange={handleChange}
         >
           {PROPERTY_TYPES.map((type) => (
             <option key={type} value={type}>
@@ -139,8 +59,6 @@ const PropertyAddForm = () => {
           className='border rounded w-full py-2 px-3 mb-2'
           placeholder='eg. Beautiful Apartment In Miami'
           required
-          value={fields.name}
-          onChange={handleChange}
         />
       </div>
       <div className='mb-4'>
@@ -156,8 +74,6 @@ const PropertyAddForm = () => {
           className='border rounded w-full py-2 px-3'
           rows='4'
           placeholder='Add an optional description of your property'
-          value={fields.description}
-          onChange={handleChange}
         ></textarea>
       </div>
 
@@ -175,8 +91,6 @@ const PropertyAddForm = () => {
             placeholder={
               field.charAt(0).toUpperCase() + field.slice(1)
             }
-            value={fields.location[field]}
-            onChange={handleChange}
           />
         ))}
       </div>
@@ -195,8 +109,6 @@ const PropertyAddForm = () => {
             name='beds'
             className='border rounded w-full py-2 px-3'
             required
-            value={fields.beds}
-            onChange={handleChange}
           />
         </div>
         <div className='w-full sm:w-1/3 px-2'>
@@ -212,8 +124,6 @@ const PropertyAddForm = () => {
             name='baths'
             className='border rounded w-full py-2 px-3'
             required
-            value={fields.baths}
-            onChange={handleChange}
           />
         </div>
         <div className='w-full sm:w-1/3 pl-2'>
@@ -229,8 +139,6 @@ const PropertyAddForm = () => {
             name='square_feet'
             className='border rounded w-full py-2 px-3'
             required
-            value={fields.square_feet}
-            onChange={handleChange}
           />
         </div>
       </div>
@@ -250,8 +158,6 @@ const PropertyAddForm = () => {
                 name='amenities'
                 value={amenity}
                 className='mr-2'
-                checked={fields.amenities.includes(amenity)}
-                onChange={handleAmenitiesChange}
               />
               <label
                 htmlFor={`amenity_${amenity
@@ -280,8 +186,6 @@ const PropertyAddForm = () => {
                 id={`${key}_rate`}
                 name={`rates.${key}`}
                 className='border rounded w-full py-2 px-3'
-                value={fields.rates[key]}
-                onChange={handleChange}
               />
             </div>
           ))}
@@ -304,8 +208,6 @@ const PropertyAddForm = () => {
             placeholder={
               field.charAt(0).toUpperCase() + field.slice(1)
             }
-            value={fields.seller_info[field]}
-            onChange={handleChange}
           />
         </div>
       ))}
@@ -325,6 +227,7 @@ const PropertyAddForm = () => {
           accept='image/*'
           multiple
           onChange={handleImageChange}
+          required
         />
       </div>
 

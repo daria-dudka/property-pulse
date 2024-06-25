@@ -23,9 +23,7 @@ export const POST = async (request) => {
 
     let isBookmarked = user.bookmarks.includes(propertyId);
 
-    return new Response(JSON.stringify({ isBookmarked }), {
-      status: 200,
-    });
+    return Response.json({ isBookmarked });
   } catch (error) {
     console.log(error);
     return new Response('Something went wrong', {
