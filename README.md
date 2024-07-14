@@ -8,7 +8,7 @@ You can find the deployed application by going to this link https://property-pul
 
 ## Features
 
-Here are some of the current features that Property Pulse has:
+Here are some of the current features that Property Pulse App has:
 
 - [x] User authentication with Google & Next Auth
 - [x] User authorization
